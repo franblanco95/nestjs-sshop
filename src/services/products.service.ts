@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { CreateProductDto, UpdateProductDto } from 'src/dtos/products.dto';
 import { Product } from 'src/entities/product.entity';
 
 // Los servicios siempre llevan el decorador de Injectable
@@ -37,7 +38,7 @@ export class ProductsService {
     }
   }
 
-  createProduct(payload: any) {
+  createProduct(payload: CreateProductDto) {
     this.counterId = this.counterId + 1;
     const newProduct = {
       id: this.counterId,
@@ -47,7 +48,7 @@ export class ProductsService {
     return newProduct;
   }
 
-  updateProduct(id: number, payload: any) {
+  updateProduct(id: number, payload: UpdateProductDto) {
     console.log(id, payload);
     const product = this.findOne(id);
     console.log(product);
